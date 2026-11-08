@@ -1,7 +1,9 @@
-# Git branch shorthand setup
+# Git shorthand setup
 
-`setup-gscb.sh` installs the `gscb` shell function for creating a Git branch
-from the command line.
+This repository contains setup scripts for two Git shell functions:
+
+- `gscb` creates and switches to a new branch.
+- `gacp` stages changes, commits them, and pushes the commit.
 
 ## Supported shells
 
@@ -14,21 +16,23 @@ detect the OS, it prompts you to choose one. You can also specify it directly.
 
 ## Setup
 
-Run the script from this directory:
+Run the relevant script from this directory:
 
 ```sh
 # macOS
 chmod +x setup-gscb.sh
 ./setup-gscb.sh --os macos
+./setup-gacp.sh --os macos
 
 # Windows, from Git Bash
 bash setup-gscb.sh --os windows
+bash setup-gacp.sh --os windows
 ```
 
-The `--os` option accepts `macos` or `windows`. If you omit it, the script
-detects the current OS when possible, or presents a selection prompt.
-Running the setup again safely replaces the script's managed configuration
-block. Other profile content is preserved.
+The `--os` option accepts `macos` or `windows`. If omitted, each script detects
+the current OS when possible, or prompts you to choose. Running a setup script
+again safely replaces its managed configuration block; other profile content
+is preserved.
 
 After setup, open a new terminal or reload the profile:
 
@@ -41,6 +45,8 @@ source ~/.bashrc
 ```
 
 ## Usage
+
+### Create a branch
 
 From inside a Git working tree:
 
@@ -57,3 +63,16 @@ gscb my-new-branch-name ../another-repository
 
 The function runs `git switch -c`, so Git creates and checks out the new branch.
 The branch name must not already exist. Git errors are displayed as usual.
+
+### Add, commit, and push
+
+From inside a Git working tree, quote the commit message:
+
+```sh
+gacp "my commit message"
+```
+
+The function runs `git add .`, `git commit -m "my commit message"`, then
+`git push`, stopping if any step fails. Git must have a push destination
+configured for the current branch; for a new branch, set its upstream first,
+for example with `git push -u origin my-new-branch-name`.
