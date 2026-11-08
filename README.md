@@ -1,6 +1,6 @@
-# Shell setup scripts
+# Shell shortcuts setup
 
-This repository contains shell setup scripts for convenient command-line shortcuts:
+Use one setup script to add convenient command-line shortcuts to your shell:
 
 - `gscb` creates and switches to a new branch.
 - `gacp` stages changes, commits them, and pushes the commit.
@@ -12,31 +12,28 @@ This repository contains shell setup scripts for convenient command-line shortcu
 - **Windows:** Bash (for example, Git Bash), configured in `~/.bashrc` and
   `~/.bash_profile`
 
-Each setup script detects macOS and common Windows Bash environments. If it
+The setup script detects macOS and common Windows Bash environments. If it
 cannot detect the OS, it prompts you to choose one. You can also specify it
 directly.
 
 ## Setup
 
-Run the relevant script from this directory:
+Run the setup script from this directory to install all three shortcuts:
 
 ```sh
 # macOS
-chmod +x setup-gscb.sh
-./setup-gscb.sh --os macos
-./setup-gacp.sh --os macos
-./setup-kubernetes.sh --os macos
+chmod +x setup.sh
+./setup.sh --os macos
 
 # Windows, from Git Bash
-bash setup-gscb.sh --os windows
-bash setup-gacp.sh --os windows
-bash setup-kubernetes.sh --os windows
+bash setup.sh --os windows
 ```
 
-The `--os` option accepts `macos` or `windows`. If omitted, each script detects
-the current OS when possible, or prompts you to choose. Running a setup script
-again safely replaces its managed configuration block; other profile content
-is preserved.
+The `--os` option accepts `macos` or `windows`. If omitted, the script detects
+the current OS when possible, or prompts you to choose. It adds shortcuts that
+are not already configured, preserves other profile content, and replaces the
+previous individual setup-script blocks with one managed block. It is safe to
+run again.
 
 After setup, open a new terminal or reload the profile:
 
