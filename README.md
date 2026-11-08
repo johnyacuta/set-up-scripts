@@ -1,6 +1,6 @@
-# Git shorthand setup
+# Shell setup scripts
 
-This repository contains setup scripts for two Git shell functions:
+This repository contains shell setup scripts for convenient command-line shortcuts:
 
 - `gscb` creates and switches to a new branch.
 - `gacp` stages changes, commits them, and pushes the commit.
@@ -12,8 +12,9 @@ This repository contains setup scripts for two Git shell functions:
 - **Windows:** Bash (for example, Git Bash), configured in `~/.bashrc` and
   `~/.bash_profile`
 
-The script detects macOS and common Windows Bash environments. If it cannot
-detect the OS, it prompts you to choose one. You can also specify it directly.
+Each setup script detects macOS and common Windows Bash environments. If it
+cannot detect the OS, it prompts you to choose one. You can also specify it
+directly.
 
 ## Setup
 
