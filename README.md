@@ -4,6 +4,7 @@ This repository contains setup scripts for two Git shell functions:
 
 - `gscb` creates and switches to a new branch.
 - `gacp` stages changes, commits them, and pushes the commit.
+- `k` is a shorthand alias for the Kubernetes CLI, `kubectl`.
 
 ## Supported shells
 
@@ -23,10 +24,12 @@ Run the relevant script from this directory:
 chmod +x setup-gscb.sh
 ./setup-gscb.sh --os macos
 ./setup-gacp.sh --os macos
+./setup-kubernetes.sh --os macos
 
 # Windows, from Git Bash
 bash setup-gscb.sh --os windows
 bash setup-gacp.sh --os windows
+bash setup-kubernetes.sh --os windows
 ```
 
 The `--os` option accepts `macos` or `windows`. If omitted, each script detects
@@ -76,3 +79,12 @@ The function runs `git add .`, `git commit -m "my commit message"`, then
 `git push`, stopping if any step fails. Git must have a push destination
 configured for the current branch; for a new branch, set its upstream first,
 for example with `git push -u origin my-new-branch-name`.
+
+### Kubernetes CLI
+
+Use `k` anywhere you would use `kubectl`:
+
+```sh
+k get pods
+k describe deployment my-deployment
+```
