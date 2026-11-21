@@ -197,7 +197,9 @@ gscb() {
         return 2
     fi
 
-    git -C "${2:-.}" switch -c "$1"
+    repo=${2:-.}
+    git -C "$repo" switch -c "$1" &&
+        git -C "$repo" push -u origin "$1"
 }
 EOF
         fi
