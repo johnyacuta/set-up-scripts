@@ -2,7 +2,8 @@
 
 Use one setup script to add convenient command-line shortcuts to your shell:
 
-- `gscb` creates and switches to a new branch.
+- `gscb` creates a new branch, switches to it, and pushes it to `origin` with
+  upstream tracking.
 - `gacp` stages changes, commits them, and pushes the commit.
 - `k` is a shorthand alias for the Kubernetes CLI, `kubectl`.
 
@@ -62,8 +63,10 @@ gscb my-new-branch-name .
 gscb my-new-branch-name ../another-repository
 ```
 
-The function runs `git switch -c`, so Git creates and checks out the new branch.
-The branch name must not already exist. Git errors are displayed as usual.
+The function runs `git switch -c`, then pushes the branch with
+`git push -u origin <branch-name>` so Git sets up upstream tracking. The branch
+name must not already exist, and the repository must have an `origin` remote
+configured. Git errors are displayed as usual.
 
 ### Add, commit, and push
 
@@ -74,9 +77,10 @@ gacp "my commit message"
 ```
 
 The function runs `git add .`, `git commit -m "my commit message"`, then
-`git push`, stopping if any step fails. Git must have a push destination
-configured for the current branch; for a new branch, set its upstream first,
-for example with `git push -u origin my-new-branch-name`.
+`git push`, stopping if any step fails. Branches created with `gscb` already
+have their upstream configured. For branches created another way, set an
+upstream before using `gacp`, for example with
+`git push -u origin my-new-branch-name`.
 
 ### Kubernetes CLI
 
